@@ -1,33 +1,53 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 
 <head>
-
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Concert Corner</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link href="assets/css/normalize.css" rel="stylesheet">
-    <!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
-        crossorigin="anonymous"> -->
-    <link href="assets/css/style.css" rel="stylesheet">
-    <script src="https://www.gstatic.com/firebasejs/5.9.0/firebase.js"></script>
-
-    <script src="https://cdn.firebase.com/libs/firebaseui/2.3.0/firebaseui.js"></script>
-    <link type="text/css" rel="stylesheet" href="https://cdn.firebase.com/libs/firebaseui/2.3.0/firebaseui.css" />
-
 </head>
+            <!-- Below is the initialization snippet for my Firebase project. It will vary for each project -->
+            <script src="https://www.gstatic.com/firebasejs/5.9.0/firebase.js"></script>
+            <script>
+                // Initialize Firebase  
+                var config = {
+                    apiKey: "AIzaSyBilv09OSIQXQA5FjDXRAYWgyK59DPoDA4",
+                    authDomain: "teamapi.firebaseapp.com",
+                    databaseURL: "https://teamapi.firebaseio.com",
+                    projectId: "teamapi",
+                    storageBucket: "teamapi.appspot.com",
+                    messagingSenderId: "880408127269"
+                };
+                firebase.initializeApp(config);  
+            </script>
+            <!-- The code below initializes the sign-in widget from FirebaseUI web. -->
+            <script src="https://cdn.firebase.com/libs/firebaseui/1.0.0/firebaseui.js"></script>
+            <link type="text/css" rel="stylesheet"
+                href="https://cdn.firebase.com/libs/firebaseui/1.0.0/firebaseui.css" />
+            <script type="text/javascript">
+                var uiConfig = {
+                    signInSuccessUrl: 'concertcorner.html',
+                    signInOptions: [
+                        // Specify providers you want to offer your users.  
+                        firebase.auth.GoogleAuthProvider.PROVIDER_ID,
+                        firebase.auth.GithubAuthProvider.PROVIDER_ID,
+                        firebase.auth.EmailAuthProvider.PROVIDER_ID
+                    ],
+                    // Terms of service url can be specified and will show up in the widget.  
+                    tosUrl: '<your-tos-url>'
+                };
+                // Initialize the FirebaseUI Widget using Firebase.  
+                var ui = new firebaseui.auth.AuthUI(firebase.auth());
+                // The start method will wait until the DOM is loaded.  
+                ui.start('#firebaseui-auth-container', uiConfig);  
+            </script>
+            <!-- Include a simple background image & and title -->
+            <div></div>
 
-<body>
-    
-    <div class="container">
-        <div class="row sign-in">
-            <h2 class="logInHeader"></h2>
-            <div id="firebaseui-auth-container"></div>
-        </div>
-    </div>
+            <body>
+                <h1 align="center" style="color:steelblue;">Concert Corner Login</h1>
+                <div id="firebaseui-auth-container"></div>
+            </body>
 
-    <script src="assets/javascript/signin.js"></script>
-
-</body>
-
-</html>
+            </html>
